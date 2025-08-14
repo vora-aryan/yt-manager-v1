@@ -30,6 +30,9 @@ app.use("/api/download-all", downloadLimiter);
 
 const isPlaylist = (url) => url.includes("list=");
 
+app.get("/", (req, res) => {
+  return res.status(200).json({ message: "Hello from the backend!" });
+});
 app.get("/api/test", (req, res) => {
   return res.status(200).json({ message: "Hello from the backend!" });
 });
