@@ -1,8 +1,8 @@
 {
   "type": "commonjs",
   "scripts": {
-    "dev": "nodemon ./api/app.js",
-    "start": "node ./api/app.js"
+    "dev": "nodemon ./api/index.js",
+    "start": "node ./api/index.js"
   },
   "dependencies": {
     "@distube/ytdl-core": "^4.16.12",
