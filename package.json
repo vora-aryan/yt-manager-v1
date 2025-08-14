@@ -2,7 +2,8 @@
   "type": "commonjs",
   "scripts": {
     "dev": "nodemon ./src/app.js",
-    "start": "node ./src/app.js"
+    "start": "node ./src/app.js",
+    "build": "echo 'No build required' && exit 0"
   },
   "dependencies": {
     "@distube/ytdl-core": "^4.16.12",
