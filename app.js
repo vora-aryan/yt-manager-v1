@@ -119,8 +119,13 @@ app.get("/download-all", async (req, res) => {
 
   try {
     const playlist = await ytpl(url, { pages: Infinity });
+
     if (!playlist.items?.length) {
       return res.status(404).json({ error: "Empty playlist" });
+    }
+
+    if (playlist.items.length > process.env.MAX_PLAYLIST_ITEMS) {
+      return res.status(400).json({ error: "Playlist too large" });
     }
 
     // Start streaming ZIP to client immediately
@@ -155,7 +160,10 @@ app.get("/download-all", async (req, res) => {
     const workDir = await fsp.mkdtemp(path.join(os.tmpdir(), "ytzip-"));
 
     // Choose a sane concurrency (tune 3–6 based on your server/network)
-    const CONCURRENCY = Math.min(4, playlist.items.length);
+    const CONCURRENCY = Math.min(
+      process.env.CONCURRENCY,
+      playlist.items.length
+    );
 
     await PromiseBlue.map(
       playlist.items,
