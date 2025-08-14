@@ -26,15 +26,15 @@ const downloadLimiter = rateLimit({
   max: 5,
   message: "Too many download requests, try later.",
 });
-app.use("/download-all", downloadLimiter);
+app.use("/api/download-all", downloadLimiter);
 
 const isPlaylist = (url) => url.includes("list=");
 
-app.get("/test", (req, res) => {
+app.get("/api/test", (req, res) => {
   return res.status(200).json({ message: "Hello from the backend!" });
 });
 
-app.get("/formats", async (req, res) => {
+app.get("/api/formats", async (req, res) => {
   const { url, formatType = "both" } = req.query;
 
   if (!ytdl.validateURL(url)) {
@@ -84,7 +84,7 @@ app.get("/formats", async (req, res) => {
   }
 });
 
-app.get("/download", async (req, res) => {
+app.get("/api/download", async (req, res) => {
   const { url, itag } = req.query;
 
   if (!ytdl.validateURL(url)) {
@@ -114,7 +114,7 @@ const sanitize = (s) =>
     .replace(/\s+/g, " ")
     .slice(0, 120);
 
-app.get("/download-all", async (req, res) => {
+app.get("/api/download-all", async (req, res) => {
   const { url, formatType } = req.query;
 
   if (!url || !isPlaylist(url)) {
@@ -227,7 +227,7 @@ function parseDurationToSeconds(durStr) {
   return null;
 }
 
-app.get("/playlist-formats", async (req, res) => {
+app.get("/api/playlist-formats", async (req, res) => {
   const { url, formatType = "both" } = req.query;
   if (!url) return res.status(400).json({ error: "URL required" });
   if (!isPlaylist(url)) {
