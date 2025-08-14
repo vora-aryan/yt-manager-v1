@@ -26,7 +26,7 @@ const downloadLimiter = rateLimit({
   max: 5,
   message: "Too many download requests, try later.",
 });
-app.use("/download-all", downloadLimiter);
+app.use("/api/download-all", downloadLimiter);
 
 const isPlaylist = (url) => url.includes("list=");
 
