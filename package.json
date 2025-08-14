@@ -1,0 +1,20 @@
+{
+  "type": "commonjs",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
+    "adm-zip": "^0.5.16",
+    "archiver": "^7.0.1",
+    "bluebird": "^3.7.2",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "mongoose": "^8.17.0",
+    "p-limit": "^6.2.0",
+    "ytpl": "^2.3.0"
+  }
+}
